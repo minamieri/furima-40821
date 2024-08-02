@@ -42,7 +42,7 @@ Things you may want to cover:
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| product_name  | string     | null: false                   |
+| product_name | string     | null: false                    |
 | category     | string     | null: false                    |
 | price        | string     | null: false                    |
 | seller       | string     | null: false                    |
