@@ -51,7 +51,7 @@ Things you may want to cover:
 | status_id          | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
 | area_id            | integer    | null: false                    |
-| days_id            | integer    | null: false                    |
+| day_id             | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
@@ -78,7 +78,7 @@ Things you may want to cover:
 | Column        | Type       | Options                        |
 | ------------  | ---------- | -----------------------------  |
 | post_code     | string     | null: false                    |
-| prefecture_id | integer    | null: false                    |
+| area_id       | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building_name | string     |                                |
