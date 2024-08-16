@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has many :products
+  has many :order_histories
+
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
 
@@ -12,13 +15,8 @@ class User < ApplicationRecord
   validates :password, format: { without: /\p{Han}|\p{Katakana}|\p{Hiragana}|[Ａ-Ｚａ-ｚ０-９]/, message: 'には全角文字は使えません' }
 
   FULL_WIDTH_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
-  # FULL_WIDTH_REGEX = /\A[ぁ-んァ-ン一-龯々〆〤]+\z/
-
-  #   validate :password_complexity
 
   validates :nickname, presence: true
-  # validates :email, presence: true, uniqueness: true
-  # validates :password, presence: true
   validates :birthday, presence: true
   validates :full_width_lastname, presence: true, format: { with: FULL_WIDTH_REGEX, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
   validates :full_width_firstname, presence: true, format: { with: FULL_WIDTH_REGEX, message: 'は全角（漢字・ひらがな・カタカナ）で入力してください' }
