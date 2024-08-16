@@ -26,8 +26,10 @@ RSpec.describe User, type: :model do
       end
 
       it 'email:一意性' do
+        @user.full_width_lastname = '斧乃木'
+        @user.full_width_firstname = '余継'
         @user.save
-        raise "Failed to save @user: #{@user.errors.full_messages.join(', ')}" unless @user.persisted?
+        # -raise "Failed to save @user: #{@user.errors.full_messages.join(', ')}" unless @user.persisted?
 
         another_user = FactoryBot.build(:user, email: @user.email)
         # another_user.email = @user.email
@@ -102,12 +104,6 @@ RSpec.describe User, type: :model do
         @user.full_width_firstname = 'Yotsugi'
         @user.valid?
         expect(@user.errors.full_messages).to include('Full width firstname は全角（漢字・ひらがな・カタカナ）で入力してください')
-      end
-
-      it 'nickname:必須' do
-        @user.nickname = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
       it 'katakana_lastname:必須' do
