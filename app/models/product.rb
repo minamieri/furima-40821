@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user
-  has_one    :shipping
+  has_one :shipping
 
   validates :productname, presence: true
   validates :description, presence: true
