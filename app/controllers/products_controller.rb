@@ -10,9 +10,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.build(product_params)
     if @product.save
-      redirect_to root_path, notice: 'Product was successfully created.'
+      redirect_to root_path, notice: '出品しましたぜ.'
     else
       render :new
     end
