@@ -25,7 +25,7 @@
         <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
-    <%= image_tag message.image.variant(resize: '500x500'), class: 'message-image' if message.image.attached? %>
+    <%= image_tag @product.image.variant(resize: '500x500'), class: 'product-image' if @product.image.attached? %>
     <%# /商品画像 %>
     <%# 商品名と商品説明 %>
     <div class="new-items">
@@ -89,7 +89,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:days_id, [], :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:day_id, [], :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
         <%# <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %> 
       </div>
     </div>

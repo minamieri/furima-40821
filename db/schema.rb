@@ -46,12 +46,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_17_093528) do
     t.integer "status_id", null: false
     t.integer "delivery_charge_id", null: false
     t.integer "area_id", null: false
-    t.integer "days_id", null: false
+    t.integer "day_id", null: false
     t.integer "price", null: false
-    t.integer "user_id", null: false
-    t.text "image"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -74,4 +74,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_17_093528) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "products", "users"
 end
