@@ -24,6 +24,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if current_product.update(product_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def product_params

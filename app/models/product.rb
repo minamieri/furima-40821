@@ -9,11 +9,11 @@ class Product < ApplicationRecord
   belongs_to :area
   belongs_to :day
 
-  validates :content, presence: true, unless: :was_attached?
+  validates :image, presence: true, unless: :was_attached?
   validates :productname, :description, :category_id, :status_id, :delivery_charge_id, :area_id, :day_id, :price, presence: true
   validate :was_attached?
   # 空の投稿を保存できないようにする
-  validates :title, :text, presence: true
+  validates :description, presence: true
 
   # ジャンルの選択が「---」の時は保存できないようにする
   validates :category_id, :status_id, :delivery_charge_id, :area_id, :day_id,
