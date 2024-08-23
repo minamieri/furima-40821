@@ -1,5 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe "Products", type: :request do
-
+RSpec.describe 'Products', type: :request do
 end
