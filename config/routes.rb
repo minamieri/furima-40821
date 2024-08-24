@@ -1,7 +1,5 @@
-Rails.application.routes.draw do
-  devise_for :users
-  get 'articles/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  # Defines the root path route ("/")
-  root to: "articles#index"
+Rails.application.routes.draw do 
+  devise_for :users #絶対に消しちゃダメ。localhost3000で表示されなくなる。deviseのブラックボックス
+  root to: "products#index"
+  resources :products 
 end
