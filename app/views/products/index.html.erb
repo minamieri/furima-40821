@@ -154,15 +154,10 @@
       <% end %>
      </li>
      <% end %> 
-    <ul>
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-       <%# <% if @items[0] != nil %>  
-       <%# <% <% end %>  
-      
+    <ul>  
       <% if @products.empty? %> 
       <li class='list'>
         <%= link_to '#' do %>  
-        <%# ダミー商品の表示だけを行い、リンク自体は無効にしたい場合はこのままでおけ %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -179,8 +174,6 @@
       <% end %>
       </li>
       <% end %>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
   <%# /商品一覧 %>
