@@ -127,59 +127,37 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
-   <%# <%= link_to "投稿する", new_product_path, class:"post" %> 
-
-   <%# <% @products.each do |product| %> 
-      <%# <div class="product"> %>
-        <%# <div class="product-category"> %>
-          <%# <%= product.category.name %> 
-        <%# </div> %>
-        <%# <div class="product-title"> %>
-          <%# <%= product.productname %> 
-          <%# <ex%# <%= product.title %>  
-        <%# </div> %>
-        <%# <div class="product-text"> %>
-          <%# <%= product.description %> 
-          <%# <ex%= product.text %> 
-        <%# </div> %>
-   <%# </div> %>
-   <%# <% end %> 
-
+     <% @products.each do |product| %>
       <li class='list'>
-        <%= link_to "#" do %>
-        <div class='item-img-content'>
-          <%= image_tag "item-sample.png", class: "item-img" %>
+        <%= link_to '#' do %>
+         <div class='item-img-content'>
+          <%= image_tag product.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
+          <%# <%- if product.sold_out? %>  
+            <%# <-div class='sold-out'>  %>
+            <%# <-span>Sold Out!!</span>  %>
+          <%# <-/div>  %>
+         <%# <%- end %>  
         </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= "商品名" %>
+        <div class='product'>
+          <h3 class='productname'>
+            <%= product.productname %>
           </h3>
-          <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+          <div class='product-price'>
+            <span><%= product.price %>円<br><%= product.delivery_charge.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
             </div>
           </div>
         </div>
-        <% end %>
-      </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
+      <% end %>
+     </li>
+     <% end %> 
+    <ul>  
+      <% if @products.empty? %> 
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to '#' do %>  
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -193,10 +171,9 @@
             </div>
           </div>
         </div>
-        <% end %>
+      <% end %>
       </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+      <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
