@@ -130,7 +130,6 @@
      <% @products.each do |product| %>
       <li class='list'>
         <%= link_to product_path(product) do %>
-        <%# <%= link_to '#' do %> 
          <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" %>
 
@@ -151,7 +150,7 @@
               <span class='star-count'>0</span>
             </div>
           </div>
-        </div>
+        </div> 
       <% end %>
      </li>
      <% end %> 

@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
+  belongs_to :status
+  belongs_to :category
   # has_one :shipping
   has_one_attached :image
   belongs_to_active_hash :category
@@ -20,6 +22,14 @@ class Product < ApplicationRecord
   def profit
     (price * 0.9).floor
   end
+
+  def sold_out?
+    status == 'sold_out'
+  end
+
+  # def on_sale?
+  # self.status == "販売中"
+  # end
 
   private
 
