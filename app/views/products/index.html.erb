@@ -129,7 +129,7 @@
     <ul class='item-lists'>
      <% @products.each do |product| %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to product_path(product) do %>
          <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" %>
 
@@ -150,11 +150,11 @@
               <span class='star-count'>0</span>
             </div>
           </div>
-        </div>
+        </div> 
       <% end %>
      </li>
      <% end %> 
-    <ul>  
+    </ul>  
       <% if @products.empty? %> 
       <li class='list'>
         <%= link_to '#' do %>  
