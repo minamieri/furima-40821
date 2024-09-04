@@ -3,13 +3,17 @@ class Product < ApplicationRecord
   belongs_to :user
   belongs_to :status
   belongs_to :category
+  belongs_to :delivery_charge
+  belongs_to :area
+  belongs_to :day
+
   # has_one :shipping
   has_one_attached :image
-  belongs_to_active_hash :category
-  belongs_to_active_hash :status
-  belongs_to_active_hash :delivery_charge
-  belongs_to_active_hash :area
-  belongs_to_active_hash :day
+  # belongs_to_active_hash :category
+  # belongs_to_active_hash :status
+  # belongs_to_active_hash :delivery_charge
+  # belongs_to_active_hash :area
+  # belongs_to_active_hash :day
 
   validates :image, presence: true, unless: :was_attached?
   validates :productname, :description, presence: true

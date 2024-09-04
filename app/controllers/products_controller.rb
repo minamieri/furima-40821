@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_product, only: [:show]
   # before_action :check_authorization, only: [:show]
@@ -23,37 +23,37 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    @product = Product.find(params[:id])
+  # def show
+  # @product = Product.find(params[:id])
 
-    # if @product.status == '販売中' && @product.user_id != current_user.id
-    # else
-    # redirect_to products_path
-    # end
+  # if @product.status == '販売中' && @product.user_id != current_user.id
+  # else
+  # redirect_to products_path
+  # end
 
-    # if @product.user_id != current_user.id
-    # else
-    # redirect_to products_path
-    # end
-  end
+  # if @product.user_id != current_user.id
+  # else
+  # redirect_to products_path
+  # end
+  # end
 
   def edit
-    @product = Product.find(params[:id])
+    # @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
-    if current_product.update(product_params)
-      redirect_to root_path
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    # @product = Product.find(params[:id])
+    # if current_product.update(product_params)
+    # redirect_to root_path
+    # else
+    # render :edit, status: :unprocessable_entity
+    # end
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-    redirect_to products_url
+    # @product = Product.find(params[:id])
+    # @product.destroy
+    # redirect_to products_url
   end
 
   private
@@ -64,8 +64,8 @@ class ProductsController < ApplicationController
   end
 
   def correct_user
-    @product = current_user.products.find_by(id: params[:id])
-    redirect_to products_path, notice: 'Not authorized to edit this product' if @product.nil?
+    # @product = current_user.products.find_by(id: params[:id])
+    # redirect_to products_path, notice: 'Not authorized to edit this product' if @product.nil?
   end
 
   def set_product
