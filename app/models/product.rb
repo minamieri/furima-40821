@@ -9,11 +9,6 @@ class Product < ApplicationRecord
 
   # has_one :shipping
   has_one_attached :image
-  # belongs_to_active_hash :category
-  # belongs_to_active_hash :status
-  # belongs_to_active_hash :delivery_charge
-  # belongs_to_active_hash :area
-  # belongs_to_active_hash :day
 
   validates :image, presence: true, unless: :was_attached?
   validates :productname, :description, presence: true

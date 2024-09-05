@@ -38,16 +38,16 @@ class ProductsController < ApplicationController
   # end
 
   def edit
-    # @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def update
-    # @product = Product.find(params[:id])
-    # if current_product.update(product_params)
-    # redirect_to root_path
-    # else
-    # render :edit, status: :unprocessable_entity
-    # end
+    @product = Product.find(params[:id])
+    if current_product.update(product_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
