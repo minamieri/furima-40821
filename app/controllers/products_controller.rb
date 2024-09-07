@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_product, only: [:edit, :update]
+  before_action :set_product, only: [:show, :edit, :update]
   before_action :check_user_permission, only: [:edit, :update]
 
   def index
@@ -21,15 +21,15 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    # @product = Product.find(params[:id])
   end
 
   def edit
-    @product = Product.find(params[:id])
+    # @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+    # @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to product_path(@product)
     else

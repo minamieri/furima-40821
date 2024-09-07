@@ -1,5 +1,5 @@
-<%# cssは商品出品のものを併用しています。
-app/assets/stylesheets/items/new.css %>
+<%# cssは商品出品のものを併用しています。%>
+<%# app/assets/stylesheets/items/new.css  %>
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
@@ -7,19 +7,19 @@ app/assets/stylesheets/items/new.css %>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
 
-    <%= form_with(model: @product, local: true) do |f| %> 
-    <% if @product.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-        <ul>
-          <% @product.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <% render 'shared/error_messages', model: f.object %>
+     <%= form_with(model: @product, local: true) do |f| %>  
+    <%# <% if @product.errors.any? %> 
+      <%# <div id="error_explanation"> %>
+        <%# <h2><%= pluralize(@product.errors.count, "error") prohibited this product from being saved:</h2>  %>
+        <%# <ul> %>
+          <%# <% @product.errors.full_messages.each do |message| %> 
+            <%# <li><%= message</li>  %>
+          <%# <% end %> 
+        <%# </ul> %>
+      <%# </div> %>
+    <%# <% end %> 
+    <%= render 'shared/error_messages', model: @product %>
+    <%# <% render 'shared/error_messages', model: f.object %> 
     
     <%# 商品画像 %>
     <div class="img-upload">
@@ -167,4 +167,5 @@ app/assets/stylesheets/items/new.css %>
       ©︎Furima,Inc.
     </p>
   </footer>
+ </div>
 </div>
