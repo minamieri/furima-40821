@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_product, only: [:show, :edit, :update]
   before_action :check_user_permission, only: [:edit, :update]
@@ -22,15 +21,12 @@ class ProductsController < ApplicationController
   end
 
   def show
-    # @product = Product.find(params[:id])
   end
 
   def edit
-    # @product = Product.find(params[:id])
   end
 
   def update
-    # @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to product_path(@product)
     else
@@ -39,7 +35,6 @@ class ProductsController < ApplicationController
   end
 
   # def destroy
-  # @product = Product.find(params[:id])
   # @product.destroy
   # redirect_to products_url
   # end
@@ -56,12 +51,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:image, :productname, :description, :category_id, :status_id, :delivery_charge_id, :area_id,
                                       :day_id, :price).merge(user_id: current_user.id)
-    end
-
-    def correct_user
-      return if @product.user_id == current_user.id
-
-      redirect_to root_path
     end
   end
 end
