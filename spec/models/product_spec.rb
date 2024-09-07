@@ -88,7 +88,7 @@ RSpec.describe Product, type: :model do
       it '販売手数料と販売利益は、小数点以下を切り捨てて表示すること' do
         @product.price = 1000
         @product.save
-        # expect((@product.price * 0.9).floor).to eq((@product.price * 0.9).floor)
+
         expect(@product.profit).to eq((@product.price * 0.9).floor)
       end
 
