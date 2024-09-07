@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_product, only: [:show, :edit, :update]
-  before_action :check_user_permission, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :check_user_permission, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.order('created_at DESC')
@@ -34,10 +34,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def destroy
-  # @product.destroy
-  # redirect_to products_url
-  # end
+  def destroy
+    @product.destroy
+    redirect_to root_path
+  end
 
   private
 
@@ -47,10 +47,14 @@ class ProductsController < ApplicationController
 
   def check_user_permission
     redirect_to root_path unless @product.user_id == current_user.id
+  end
 
-    def product_params
+  def product_params
+    if current_user
       params.require(:product).permit(:image, :productname, :description, :category_id, :status_id, :delivery_charge_id, :area_id,
                                       :day_id, :price).merge(user_id: current_user.id)
+    else
+      redirect_to new_user_session_path
     end
   end
 end
