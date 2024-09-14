@@ -39,7 +39,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :products
-- has_many :order_histories
+- has_many :order_history
 
 ## products テーブル
 

@@ -1,4 +1,4 @@
-<%= render "shared/second-header"%>
+<%= render "shared/second-header" %>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -7,14 +7,14 @@
     </h1>
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
-      <%= image_tag "item-sample.png", class: 'buy-item-img' %>
+      <%= image_tag @product.image ,class:'buy-item-img' %> 
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= "商品名" %>
+          <%= @product.productname %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= '999,999,999' %></p>
-          <p class='item-price-sub-text'><%= '配送料負担' %></p>
+          <p class='item-price-text'>¥<%= @product.price %></p>
+          <p class='item-price-sub-text'><%= @product.delivery_charge.name %></p> 
         </div>
       </div>
     </div>
@@ -26,17 +26,19 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%= "販売価格" %>
+         ¥<%= @product.price %>
+        <%# ¥<%= "販売価格" %> 
       </p>
     </div>
     <%# /支払額の表示 %>
+    <%= form_with(model: @order_form, id: 'charge-form', url: product_orders_path(@product), local: true) do |f| %> 
+    <%# <% <%= form_with id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>  
+    <%# <%= form_with(model: @order, url: product_orders_path, local: true) do |f| %> 
+    <%# <% end %> 
 
-    <%= form_with id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
-      <h1 class='info-input-haedline'>
-        クレジットカード情報入力
-      </h1>
+      <h1 class='info-input-haedline'>クレジットカード情報入力</h1>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">カード情報</label>
@@ -50,6 +52,7 @@
           <%= image_tag 'card-amex.gif', class: 'card-logo'%>
         </div>
       </div>
+
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">有効期限</label>
@@ -59,6 +62,7 @@
           <div id="expiry-form" class="input-default"></div>
         </div>
       </div>
+
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">セキュリティコード</label>
@@ -69,59 +73,71 @@
     </div>
     <%# /カード情報の入力 %>
     
-    <%# 配送先の入力 %>
-    <div class='shipping-address-form'>
-      <h1 class='info-input-haedline'>
-        配送先入力
-      </h1>
+    <%# 配送先の入力 %> 
+      <div class='shipping-address-form'>
+      <h1 class='info-input-haedline'>配送先入力</h1>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">郵便番号</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :hoge, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
+        <%= f.text_field :post_code, class:"input-default", id:"post-code", placeholder:"例）123-4567", maxlength:"8" %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"prefecture"}) %>
+        <%= f.collection_select(:area_id, Area.all, :id, :name, {}, {class:"select-box", id:"area"}) %>
       </div>
+
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">市区町村</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :hoge, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
+        <%= f.text_field :city, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">番地</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :hoge, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+        <%= f.text_field :address, class:"input-default", id:"address", placeholder:"例）青山1-1-1"%>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">建物名</label>
           <span class="form-any">任意</span>
         </div>
-        <%= f.text_field :hoge, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
+        <%= f.text_field :building_name, class:"input-default", id:"building_name", placeholder:"例）柳ビル103"%>
       </div>
+
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">電話番号</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :hoge, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+        <%= f.text_field :tel, class:"input-default", id:"tel", placeholder:"例）09012345678",maxlength:"11"%>
       </div>
     </div>
+    <div>
+
+    <%= f.hidden_field :token, id: 'token' %>
+    <%# <%= f.hidden_field :token, value: "トークン値をここに設定" %> 
+    </div>
+
     <%# /配送先の入力 %>
+
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
     </div>
-    <% end %>
-  </div>
-</div>
+<% end %>
+
+<%# <script> %>
+  <%# // Payjpのトークン生成処理をここに記述 %>
+<%# </script> %>
+
+  <%# </div> %>
+<%# </div> %>
 <%= render "shared/second-footer"%>
