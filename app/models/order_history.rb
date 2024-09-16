@@ -1,5 +1,4 @@
 class OrderHistory < ApplicationRecord
-  belongs_to :order_history
   belongs_to :user
   belongs_to :product
   has_one :shipping
