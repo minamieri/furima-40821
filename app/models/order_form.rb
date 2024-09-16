@@ -5,11 +5,11 @@ class OrderForm
   # attr_accessor :user_id, :product_id, :post_code, :area_id, :city, :address, :building_name, :tel, :token
 
   # バリデーション
-  validates :post_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/ }
+  validates :post_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: 'is invalid. Include hyphen(-)' }
   validates :area_id, presence: true, numericality: { other_than: 1 }
   validates :city, presence: true
   validates :address, presence: true
-  validates :tel, presence: true, format: { with: /\A\d{10,11}\z/ }
+  validates :tel, presence: true, format: { with: /\A\d{10,11}\z/, message: 'is invalid. Input only number' }
   # validates :token, presence: true
   validates :user_id, :product_id, presence: true
   # validates :user_id, :product_id, :post_code, :area_id, :city, :address, :tel, :token, presence: true
