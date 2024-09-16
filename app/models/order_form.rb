@@ -17,6 +17,7 @@ class OrderForm
 
     order_history = OrderHistory.create(user_id:, product_id:)
     # order_histories = OrderHistory.create(user_id:, product_id:)
+    # binding.pry
     Shipping.create(post_code:, area_id:, city:, address:, building_name:, tel:,
                     order_history_id: order_history.id)
 
