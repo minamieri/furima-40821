@@ -10,12 +10,14 @@ class OrdersController < ApplicationController
     @product = Product.find(params[:product_id])
     @order_form = OrderForm.new(order_form_params)
 
+    # binding.pry
+
     if @order_form.valid?
       # pay_item
       @order_form.save
       redirect_to root_path
     else
-      binding.pry
+      # binding.pry
       @product = Product.find(params[:product_id])
       # @order_form.errors.full_messages
       # puts @order_form.errors.full_messages
