@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_product, only: [:index, :create]
+  before_action :redirect_if_seller, only: [:index, :create]
   # before_action :set_product, only: [:new, :create]
   def index
     # @order_form = OrderForm.new(order_form_params)　 order_form_params はここで呼び出されていないはず
@@ -24,6 +27,17 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
+
+  def redirect_if_seller
+    # 出品者がアクセスした場合、トップページにリダイレクトする
+    return unless @product.user_id == current_user.id
+
+    redirect_to root_path
+  end
 
   def order_form_params
     params.require(:order_form).permit(:post_code, :area_id, :city, :address, :building_name, :tel).merge(
