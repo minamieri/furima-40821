@@ -8,12 +8,15 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @product.image ,class:"item-box-img" %>
-      <% if @product.sold_out? %>
+
+      <%# <% if @product.present? %> 
+      <% if @product.sold_out? %> 
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
       <% end %>
     </div>
+    
     <div class="item-price-box">
       <span class="item-price">
         <%= @product.price %>円
