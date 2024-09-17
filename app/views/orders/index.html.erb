@@ -39,6 +39,7 @@
     <%# <% end %> 
 
     <%# カード情報の入力 %>
+    <%# <script src="index.js"></script> %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>クレジットカード情報入力</h1>
       <div class="form-group">
@@ -136,10 +137,12 @@
     </div>
 <% end %>
 
-<%# <script> %>
-  <%# // Payjpのトークン生成処理をここに記述 %>
-<%# </script> %>
-
-  <%# </div> %>
+  <%# </div>  %>
 <%# </div> %>
 <%= render "shared/second-footer"%>
+
+<%= javascript_include_tag 'card', 'data-turbo-track': 'reload' %> 
+<%# ないとまずい %>
+
+<script src="https://js.pay.jp/v2/pay.js"></script> 
+<%# すでに他のところに記述があるのであってもなくてもいい。 %>

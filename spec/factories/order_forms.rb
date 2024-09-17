@@ -8,6 +8,7 @@ FactoryBot.define do
     tel            { Faker::Number.leading_zero_number(digits: 11) }
     user_id        { Faker::Number.between(from: 1, to: 100) }
     product_id     { Faker::Number.between(from: 1, to: 100) }
+    token          { 'tok_abcdefghijk00000000000000000' }
     # post_code      { '123-4567' }
     # area_id        { 2 }
     # city           { '横浜市緑区' }

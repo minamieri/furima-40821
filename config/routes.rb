@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   root to: "products#index"
   resources :products, only: [:index, :show, :edit, :update, :new, :create, :destroy] do
   resources :orders, only: [:index, :create]
+
+  root to: 'orders#index'
+  resources :orders, only:[:create]
+  # ここまでやった
   end
 end
