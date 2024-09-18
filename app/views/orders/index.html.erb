@@ -5,7 +5,7 @@
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
-    <%# 購入内容の表示 %>
+  
     <div class='buy-item-info'>
       <%= image_tag @product.image ,class:'buy-item-img' %> 
       <div class='buy-item-right-content'>
@@ -18,28 +18,20 @@
         </div>
       </div>
     </div>
-    <%# /購入内容の表示 %>
-
-    <%# 支払額の表示 %>
+  
     <div class='item-payment'>
       <h1 class='item-payment-title'>
         支払金額
       </h1>
       <p class='item-payment-price'>
          ¥<%= @product.price %>
-        <%# ¥<%= "販売価格" %> 
       </p>
     </div>
-    <%# /支払額の表示 %>
     <%= form_with(model: @order_form, id: 'charge-form', url: product_orders_path(@product), local: true) do |f| %> 
     <%= render 'shared/error_messages', model: f.object %>
-    <%# こいつを忘れるな %>
-    <%# <% <%= form_with id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>  
-    <%# <%= form_with(model: @order, url: product_orders_path, local: true) do |f| %> 
-    <%# <% end %> 
-
-    <%# カード情報の入力 %>
-    <%# <script src="index.js"></script> %>
+    <%# don't forget %>
+  
+    
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>クレジットカード情報入力</h1>
       <div class="form-group">
@@ -74,9 +66,7 @@
         <div id="cvc-form" class="input-default"></div>
       </div>
     </div>
-    <%# /カード情報の入力 %>
     
-    <%# 配送先の入力 %> 
       <div class='shipping-address-form'>
       <h1 class='info-input-haedline'>配送先入力</h1>
       <div class="form-group">
@@ -126,23 +116,16 @@
     </div>
     <div>
 
-    <%# <%= f.hidden_field :token, id: 'token' 多分エラーになるよ%>  
-    <%# <%= f.hidden_field :token, value: "トークン値をここに設定" %> 
     </div>
 
-    <%# /配送先の入力 %>
-
+    
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
     </div>
 <% end %>
 
-  <%# </div>  %>
-<%# </div> %>
 <%= render "shared/second-footer"%>
 
 <%= javascript_include_tag 'card', 'data-turbo-track': 'reload' %> 
-<%# ないとまずい %>
 
 <script src="https://js.pay.jp/v2/pay.js"></script> 
-<%# すでに他のところに記述があるのであってもなくてもいい。 %>

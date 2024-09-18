@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Shipping, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   before do
     @shipping = FactoryBot.build(:shipping)
   end
 
   context '保存できる場合' do
     it 'すべての必須項目が正しく入力されていれば保存できる' do
-      @shipping.tel = '0901234567' # 正しい形式の電話番号を設定
+      @shipping.tel = '0901234567'
       expect(@shipping).to be_valid
     end
   end
@@ -57,7 +56,7 @@ RSpec.describe Shipping, type: :model do
     end
 
     it '電話番号にハイフンが含まれていると保存できない' do
-      @shipping.tel = '090-1234-5678' # ハイフンを含んだ不正な形式
+      @shipping.tel = '090-1234-5678'
       @shipping.valid?
       expect(@shipping.errors.full_messages).to include('Tel is invalid')
     end

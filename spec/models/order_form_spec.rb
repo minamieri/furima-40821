@@ -1,20 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   before do
     @order_form = FactoryBot.build(:order_form)
   end
 
   context '内容に問題がない場合' do
     it 'すべての項目が正しく入力されていれば保存できる' do
-      @order_form.post_code = '123-4567' # 正しい形式の郵便番号を設定
+      @order_form.post_code = '123-4567'
       expect(@order_form).to be_valid
     end
-
-    # it 'tokenがあれば保存ができること' do
-    # expect(@order_form).to be_valid
-    # end
   end
 
   context '内容に問題がある場合' do
@@ -84,7 +79,7 @@ RSpec.describe OrderForm, type: :model do
     end
 
     it '電話番号が10桁以上11桁以内であれば保存できること' do
-      @order_form.post_code = '123-4567' # 有効な郵便番号を設定
+      @order_form.post_code = '123-4567'
       @order_form.tel = '09012345678'
       expect(@order_form).to be_valid
     end

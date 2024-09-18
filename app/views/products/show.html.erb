@@ -1,6 +1,5 @@
 <%= render "shared/header" %>
 
-<%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
     <h2 class= 'productname'>
@@ -9,7 +8,6 @@
     <div class="item-img-content">
       <%= image_tag @product.image ,class:"item-box-img" %>
 
-      <%# <% if @product.present? %> 
       <% if @product.sold_out? %> 
       <div class="sold-out">
         <span>Sold Out!!</span>
@@ -35,7 +33,7 @@
       <% end %>
      <% elsif !@product.sold_out? %>
      <%= link_to "購入画面に進む", product_orders_path(@product), data: { turbo: false }, class:"item-red-btn"%>
-      <%# <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%> 
+      
      <% end %>
     <% end %>
 
@@ -83,7 +81,7 @@
       </div>
     </div>
   </div>
-  <%# /商品の概要 %>
+  
 
   <div class="comment-box">
     <form>

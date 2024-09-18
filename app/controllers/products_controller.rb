@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to product_path(@product)
     else
-      render :edit, status: :unprocessable_entity # エラー記述に関わる部分
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -16,5 +16,4 @@ RSpec.describe ProductsHelper, type: :helper do
       expect(helper.format_price(1000)).to eq('¥1,000')
     end
   end
-  # pending "add some examples to (or delete) #{__FILE__}"
 end

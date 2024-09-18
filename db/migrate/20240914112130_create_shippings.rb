@@ -1,6 +1,6 @@
 class CreateShippings < ActiveRecord::Migration[7.0]
   def change
-    # create_table :shipping do |t|
+    
       create_table :shippings do |t|
       t.string :post_code, null: false
       t.integer :area_id, null: false

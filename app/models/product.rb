@@ -8,7 +8,6 @@ class Product < ApplicationRecord
   belongs_to :day
 
   has_one :order_history
-  # has_one :shipping
   has_one_attached :image
 
   validates :image, presence: true, unless: :was_attached?
