@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :order_form do
-    post_code      { Faker::Address.zip_code }
+    post_code { "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 4)}" }
+    # post_code      { Faker::Address.zip_code(state_abbreviation: 'JP') }
+    # post_code      { Faker::Address.zip_code }
     area_id        { Faker::Number.between(from: 2, to: 48) }
     city           { Faker::Address.city }
     address        { Faker::Address.street_address }

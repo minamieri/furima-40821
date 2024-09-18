@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :check_user_permission, only: [:edit, :update, :destroy]
+  before_action :redirect_if_sold_out_or_not_seller, only: [:edit, :update]
 
   def index
     @products = Product.order('created_at DESC')
@@ -43,6 +44,12 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  end
+
+  def redirect_if_sold_out_or_not_seller
+    return unless @product.sold_out? || @product.user_id != current_user.id
+
+    redirect_to root_path
   end
 
   def check_user_permission

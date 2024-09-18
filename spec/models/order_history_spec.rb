@@ -5,7 +5,10 @@ RSpec.describe OrderHistory, type: :model do
     # user = FactoryBot.create(:user)
     # product = FactoryBot.create(:product, user:)
     # @order_history = FactoryBot.build(:order_history, user:, product:)
-    @order_history = FactoryBot.build(:order_history)
+    # @order_history = FactoryBot.build(:order_history)
+    @user = FactoryBot.create(:user)
+    @product = FactoryBot.create(:product)
+    @order_history = FactoryBot.build(:order_history, user: @user, product: @product)
   end
 
   context '保存できる場合' do

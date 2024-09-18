@@ -12,9 +12,9 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form).to be_valid
     end
 
-    it 'priceとtokenがあれば保存ができること' do
-      expect(@order).to be_valid
-    end
+    # it 'tokenがあれば保存ができること' do
+    # expect(@order_form).to be_valid
+    # end
   end
 
   context '内容に問題がある場合' do
@@ -92,7 +92,7 @@ RSpec.describe OrderForm, type: :model do
     it 'tokenが空では登録できないこと' do
       @order_form.token = ''
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include('can\t be blank')
+      expect(@order_form.errors.full_messages).to include("Token can't be blank")
     end
   end
 end
