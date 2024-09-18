@@ -1,12 +1,11 @@
-const pay = () => {
-  const payjp = Payjp('pk_test_e1a5191416ca75feee4c911f')// PAY.JPテスト公開鍵
+  const pay = () => {
+  const payjp = Payjp(PAYJP_PUBLIC_KEY);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
   
   numberElement.mount('#number-form');
-  console.log(numberElement)
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
   const form = document.getElementById('charge-form')
@@ -29,3 +28,4 @@ const pay = () => {
 };
 
 window.addEventListener("turbo:load", pay);
+window.addEventListener("turbo:render", pay);

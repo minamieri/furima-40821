@@ -2,11 +2,24 @@ require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
   before do
-    @order_form = FactoryBot.build(:order_form)
+    user = FactoryBot.create(:user)
+    product = FactoryBot.create(:product)
+    @order_form = FactoryBot.build(:order_form, user_id: user.id, product_id: product.id)
   end
 
   context '内容に問題がない場合' do
     it 'すべての項目が正しく入力されていれば保存できる' do
+      @order_form.post_code = '123-4567'
+      expect(@order_form).to be_valid
+    end
+
+    it '建物名がからでも登録できる' do
+      @order_form.building_name = ''
+      expect(@order_form).to be_valid
+    end
+
+    it '建物名は任意であること' do
+      @order_form.building_name = ''
       @order_form.post_code = '123-4567'
       expect(@order_form).to be_valid
     end
@@ -31,15 +44,10 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
     end
 
-    it '郵便番号は「3桁-4桁」の形式であれば保存できること' do
-      @order_form.post_code = '123-4567'
-      expect(@order_form).to be_valid
-    end
-
     it '都道府県が必須であること' do
-      @order_form.area_id = ''
+      @order_form.area_id = '1'
       @order_form.valid?
-      expect(@order_form.errors.full_messages).to include("Area can't be blank")
+      expect(@order_form.errors.full_messages).to include('Area must be other than 1')
     end
 
     it '市区町村が必須であること' do
@@ -52,12 +60,6 @@ RSpec.describe OrderForm, type: :model do
       @order_form.address = ''
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Address can't be blank")
-    end
-
-    it '建物名は任意であること' do
-      @order_form.building_name = ''
-      @order_form.post_code = '123-4567'
-      expect(@order_form).to be_valid
     end
 
     it '電話番号が必須であること' do
@@ -88,6 +90,18 @@ RSpec.describe OrderForm, type: :model do
       @order_form.token = ''
       @order_form.valid?
       expect(@order_form.errors.full_messages).to include("Token can't be blank")
+    end
+
+    it 'user_idが空では登録できないこと' do
+      @order_form.user_id = ''
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include("User can't be blank")
+    end
+
+    it 'product_idが空では登録できないこと' do
+      @order_form.product_id = ''
+      @order_form.valid?
+      expect(@order_form.errors.full_messages).to include("Product can't be blank")
     end
   end
 end

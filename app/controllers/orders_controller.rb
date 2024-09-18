@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   before_action :move_to_root_path, only: [:index]
   def index
     @order_form = OrderForm.new
-    @product = Product.find(params[:product_id])
   end
 
   def create
@@ -51,6 +50,5 @@ class OrdersController < ApplicationController
       card: order_form_params[:token],
       currency: 'jpy'
     )
-    puts charge
   end
 end

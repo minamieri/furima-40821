@@ -27,6 +27,11 @@
          ¥<%= @product.price %>
       </p>
     </div>
+
+    <script>
+      const PAYJP_PUBLIC_KEY = '<%= ENV["PAYJP_PUBLIC_KEY"] %>';
+    </script>
+
     <%= form_with(model: @order_form, id: 'charge-form', url: product_orders_path(@product), local: true) do |f| %> 
     <%= render 'shared/error_messages', model: f.object %>
     <%# don't forget %>
