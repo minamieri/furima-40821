@@ -1,4 +1,3 @@
-<%# cssは商品出品のものを併用しています。%>
 <%# app/assets/stylesheets/items/new.css  %>
 <div class="items-sell-contents">
   <header class="items-sell-header">
@@ -10,7 +9,6 @@
      <%= form_with(model: @product, local: true) do |f| %>  
      <%= render 'shared/error_messages', model: f.object %>
     
-    <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
         商品画像
@@ -25,8 +23,7 @@
     </div>
 
     <%= image_tag @product.image.variant(resize: '500x500'), class: 'message-image' if @product.image.attached? %>
-    <%# /商品画像 %>
-    <%# 商品名と商品説明 %>
+   
     <div class="new-items">
       <div class="weight-bold-text">
         商品名
@@ -41,9 +38,7 @@
         <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
     </div>
-    <%# /商品名と商品説明 %>
-
-    <%# 商品の詳細 %>
+    
     <div class="items-detail">
       <div class="weight-bold-text">商品の詳細</div>
       <div class="form">
@@ -63,9 +58,7 @@
 
       </div>
     </div>
-    <%# /商品の詳細 %>
-
-    <%# 配送について %>
+    
     <div class="items-detail">
       <div class="weight-bold-text question-text">
         <span>配送について</span>
@@ -95,9 +88,7 @@
 
       </div>
     </div>
-    <%# /配送について %>
-
-    <%# 販売価格 %>
+    
     <div class="sell-price">
       <div class="weight-bold-text question-text">
         <span>販売価格<br>(¥300〜9,999,999)</span>
@@ -126,9 +117,7 @@
         </div>
       </div>
     </div>
-    <%# /販売価格 %>
-
-    <%# 注意書き %>
+    
     <div class="caution">
       <p class="sentence">
         <a href="#">禁止されている出品、</a>
@@ -146,15 +135,14 @@
         に同意したことになります。
       </p>
     </div>
-    <%# /注意書き %>
-    <%# 下部ボタン %>
+   
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
 
       <%=link_to 'もどる', product_path(@product), class:"back-btn" %>
 
     </div>
-    <%# /下部ボタン %>
+    
   </div>
   <% end %>
 

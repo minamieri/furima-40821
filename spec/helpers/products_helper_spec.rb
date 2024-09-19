@@ -11,5 +11,9 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ProductsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#format_price' do
+    it '価格をフォーマットする' do
+      expect(helper.format_price(1000)).to eq('¥1,000')
+    end
+  end
 end

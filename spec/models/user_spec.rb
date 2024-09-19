@@ -32,7 +32,6 @@ RSpec.describe User, type: :model do
         # -raise "Failed to save @user: #{@user.errors.full_messages.join(', ')}" unless @user.persisted?
 
         another_user = FactoryBot.build(:user, email: @user.email)
-        # another_user.email = @user.email
         another_user.valid?
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end

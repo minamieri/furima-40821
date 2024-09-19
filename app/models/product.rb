@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   belongs_to :area
   belongs_to :day
 
-  # has_one :shipping
+  has_one :order_history
   has_one_attached :image
 
   validates :image, presence: true, unless: :was_attached?
@@ -22,12 +22,9 @@ class Product < ApplicationRecord
   end
 
   def sold_out?
-    status == 'sold_out'
+    # rubocop:disable Style/RedundantSelf
+    self.order_history.present?
   end
-
-  # def on_sale?
-  # self.status == "販売中"
-  # end
 
   private
 
