@@ -5,10 +5,11 @@ class OrdersController < ApplicationController
   before_action :move_to_root_path, only: [:index]
   def index
     @order_form = OrderForm.new
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
+    # gon.products = @products
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @order_form = OrderForm.new(order_form_params)
     if @order_form.valid?
       pay_item

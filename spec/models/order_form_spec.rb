@@ -13,11 +13,6 @@ RSpec.describe OrderForm, type: :model do
       expect(@order_form).to be_valid
     end
 
-    it '建物名がからでも登録できる' do
-      @order_form.building_name = ''
-      expect(@order_form).to be_valid
-    end
-
     it '建物名は任意であること' do
       @order_form.building_name = ''
       @order_form.post_code = '123-4567'

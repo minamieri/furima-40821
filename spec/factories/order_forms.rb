@@ -7,8 +7,5 @@ FactoryBot.define do
     building_name  { Faker::Address.secondary_address }
     tel            { Faker::Number.leading_zero_number(digits: 11) }
     token          { 'tok_abcdefghijk00000000000000000' }
-
-    association :user
-    association :product
   end
 end
