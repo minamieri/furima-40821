@@ -1,4 +1,4 @@
-  const pay = () => {
+const pay = () => {
   const publicKey = gon.public_key
   const payjp = Payjp(publicKey)
   // const payjp = Payjp(PAYJP_PUBLIC_KEY);

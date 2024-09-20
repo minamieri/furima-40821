@@ -1,4 +1,4 @@
-window.addEventListener('turbo:load', () => {
+const price = () => {
   // console.log("OK");
   // });
 
@@ -14,7 +14,7 @@ window.addEventListener('turbo:load', () => {
     addPofitDom.innerHTML = Math.floor(priceInput.value - Math.floor(priceInput.value * 0.1 ))
     // console.log(priceInput);
   })
-});
+};
 
 window.addEventListener("turbo:load", price);
 window.addEventListener("turbo:render", price);
